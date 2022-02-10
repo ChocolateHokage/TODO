@@ -1,10 +1,8 @@
-const userController = require("../controllers/user_controller");
+const userController = require("../controllers/user_controller")
 
 module.exports = (router) => {
-  router.get("/user/all", (req, res) => {
-    userController.getAllUsers(req, res);
-  });
-  router.get("/user/:user_id", (req, res) => {
-    userController.getUserInfo(req, res);
-  });
-};
+  router.get("/user/all", userController.getAllUsers)
+  router.get("/user/:user_id", userController.getUserInfo)
+  router.post("/user", userController.addUser)
+  // router.put("/user", userController.updateUserData)
+}

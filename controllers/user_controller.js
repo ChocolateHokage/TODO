@@ -1,27 +1,45 @@
-const userService = require("../services/user_service");
+const userService = require("../services/user_service")
 
 class UserController {
   getUserInfo(req, res) {
     let payload = req.params
     userService.getUserInfo(payload, (err, result) => {
       if (err) {
-        res.status(500).json(err.message);
-        console.error(err);
-      } else res.json(result);
-    });
+        res.status(500).json(err.message)
+        console.error(err)
+      } else res.json(result)
+    })
   }
   getAllUsers(req, res) {
     userService.getAllUsers(req.query, (err, result) => {
       if (err) {
-        res.status(500).json(err);
-        console.error(err);
+        res.status(500).json(err)
+        console.error(err)
       } else {
-        res.json(result);
+        res.json(result)
       }
-    });
+    })
   }
-  adduser(req, res) {
-    userService.addUser(req.body(err));
+  addUser(req, res) {
+    userService.addUser(req.body, (err, result) => {
+      if (err) {
+        res.status(501).json(err)
+        console.log(err)
+      } else {
+        res.json(result)
+      }
+    })
   }
+  // updateUserData(req, res) {
+  //   userService.updateUserData(req.body, (err, result) => {
+  //     if(err) {
+  //       res.status(501).json(err)
+  //       console.log(err)
+  //     } else {
+  //       res.json(result)
+  //     }
+  //   })
+  // }
+  
 }
-module.exports = new UserController();
+module.exports = new UserController()
